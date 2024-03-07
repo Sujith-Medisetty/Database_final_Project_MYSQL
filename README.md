@@ -1,5 +1,4 @@
-## Project Overview
-e-commerce database
+## Project Overview (e-commerce database)
 
 Below are the key files and components included in the project:
 
