@@ -86,7 +86,7 @@ CREATE TABLE Payment_method (
     payment_method_id INT PRIMARY KEY AUTO_INCREMENT,
     card_no VARCHAR(255),
     card_type VARCHAR(50),
-    cust_email VARCHAR(255),
+    cust_email VARCHAR(255) NOT NULL,
     FOREIGN KEY (cust_email) REFERENCES Customer(cust_email) ON DELETE CASCADE
 );
 
@@ -94,7 +94,7 @@ CREATE TABLE Payment_method (
 CREATE TABLE `Order` (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     payment_method_id INT,
-    cust_email VARCHAR(255),
+    cust_email VARCHAR(255) NOT NULL,
     Order_Placed_timestamp DATETIME,
     FOREIGN KEY (payment_method_id) REFERENCES Payment_method(payment_method_id),
     FOREIGN KEY (cust_email) REFERENCES Customer(cust_email) ON DELETE CASCADE
@@ -114,7 +114,7 @@ CREATE TABLE Order_Details (
 CREATE TABLE Cart_Item (
     cart_item_id INT PRIMARY KEY AUTO_INCREMENT,
     item_id INT UNIQUE NOT NULL,
-    cust_email VARCHAR(255),
+    cust_email VARCHAR(255) NOT NULL,
     cart_item_qty INT,
     FOREIGN KEY (item_id) REFERENCES Item(item_id),
     FOREIGN KEY (cust_email) REFERENCES Customer(cust_email) ON DELETE CASCADE
