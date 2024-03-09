@@ -303,3 +303,12 @@ GROUP BY
 -- 14. In any of above queries can you change your database design an reduce the cost of the query?
 
 -- ANS: Created a view named 'OrderDetailsView' to simplify queries and improve query performance by eliminating the need to join the same tables multiple times for similar types of queries.
+
+
+-- decrypting the encrypted passwords.
+
+-- Decrypt passwords for VendorAuthentication table
+-- SELECT vendor_email, AES_DECRYPT(password_hash, @encryption_key) AS decrypted_password FROM VendorAuthentication;
+
+-- Decrypt passwords for CustomerAuthentication table
+-- SELECT customer_email, AES_DECRYPT(password_hash, @encryption_key) AS decrypted_password FROM CustomerAuthentication;

@@ -4,17 +4,33 @@ CREATE SCHEMA IF NOT EXISTS ECommerceDB;
 -- Use the schema
 USE ECommerceDB;
 
+SET @encryption_key = '!#Kp9@qz$rT5&xY';
+
 -- VendorAuthentication table
 CREATE TABLE VendorAuthentication (
     vendor_email VARCHAR(255) PRIMARY KEY,
-    password_hash VARCHAR(255) NOT NULL
+    password_hash VARBINARY(32) NOT NULL
 );
+
+-- Create trigger for VendorAuthentication table
+CREATE TRIGGER encrypt_vendor_password BEFORE INSERT ON VendorAuthentication
+FOR EACH ROW
+BEGIN
+    SET NEW.password_hash = AES_ENCRYPT(NEW.password_hash, @encryption_key);
+END;
 
 -- CustomerAuthentication table
 CREATE TABLE CustomerAuthentication (
     customer_email VARCHAR(255) PRIMARY KEY,
-    password_hash VARCHAR(255) NOT NULL
+    password_hash VARBINARY(32) NOT NULL
 );
+
+-- Create trigger for CustomerAuthentication table
+CREATE TRIGGER encrypt_customer_password BEFORE INSERT ON CustomerAuthentication
+FOR EACH ROW
+BEGIN
+    SET NEW.password_hash = AES_ENCRYPT(NEW.password_hash, @encryption_key);
+END;
 
 -- Vendor table
 CREATE TABLE Vendor (
