@@ -30,6 +30,56 @@ Below are the key files and components included in the project:
 
 ![ER Diagram](ecommercedb_ER_Diagram.png)
 
+### Schema Explanation
+
+1. **VendorAuthentication**:
+   - Represents authentication credentials for vendors.
+   - Each vendor is uniquely identified by their email (`vendor_email`), serving as the primary key.
+   - The `password_hash` column stores the hashed password for authentication.
+
+2. **CustomerAuthentication**:
+   - Stores authentication credentials for customers.
+   - Similar to `VendorAuthentication`, it also utilizes the email (`customer_email`) as the primary key.
+   - Passwords are stored securely in the `password_hash` column.
+
+3. **Vendor**:
+   - Contains information about vendors registered on the platform.
+   - Each vendor's email (`vendor_email`) serves as both the primary key and a foreign key referencing their authentication details.
+   - Additional vendor details include their first and last name, status, contact information (mobile), location (city, state, zipcode), and registration timestamp.
+
+4. **Customer**:
+   - Stores customer details.
+   - Primary key: `cust_email`, which also serves as a foreign key referencing authentication details from `CustomerAuthentication`.
+   - Captures customer information such as first and last name, contact details (mobile), and location.
+
+5. **Item**:
+   - Represents individual items available for sale on the platform.
+   - Each item has a unique identifier (`item_id`) and includes attributes like name, description, price, category, and image.
+
+6. **Inventory_Item**:
+   - Tracks inventory for vendors.
+   - Each record corresponds to a specific item (`item_id`) associated with a particular vendor (`vendor_email`).
+   - Additional attributes include item quantity, timestamps for item addition and updates.
+
+7. **Payment_method**:
+   - Stores payment methods associated with customers.
+   - Each payment method has a unique identifier (`payment_method_id`) and includes details such as card number, card type, and the customer's email (`cust_email`).
+
+8. **Order**:
+   - Represents orders placed by customers.
+   - Each order is uniquely identified by `order_id`.
+   - Contains information about the payment method (`payment_method_id`), customer email (`cust_email`), and timestamp for order placement.
+
+9. **Order_Details**:
+   - Links orders with the items they contain.
+   - It's a junction table between `Order` and `Item`, containing order-specific item details such as item quantity.
+
+10. **Cart_Item**:
+    - Stores items added to the cart by customers.
+    - Each record corresponds to a specific item (`item_id`) added to the cart by a customer (`cust_email`).
+    - It includes the quantity of each item in the cart.
+
+
 ## User Authentication and Registration:
 
 1. **Customer Login Page:**
