@@ -180,23 +180,33 @@ Below are the key files and components included in the project:
 ### Tables Screenshots
 
 1. **VendorAuthentication Table:**
+   
    ![VendorAuthentication Table](Tables_Screen_shots/vendorauthentication.png)
+   
    Description: Screenshot showcasing the structure of the VendorAuthentication table, including its columns and data.
 
 2. **CustomerAuthentication Table:**
+   
    ![CustomerAuthentication Table](Tables_Screen_shots/customerauthentication.png)
+   
    Description: Screenshot displaying the structure of the CustomerAuthentication table, including its columns and data.
 
 3. **Vendor Table:**
+   
    ![Vendor Table](Tables_Screen_shots/vendor.png)
+   
    Description: Screenshot illustrating the structure of the Vendor table, showcasing its columns and data.
 
 4. **Customer Table:**
+   
    ![Customer Table](Tables_Screen_shots/customer.png)
+   
    Description: Screenshot representing the structure of the Customer table, displaying its columns and data.
 
 5. **Item Table:**
+   
    ![Item Table](Tables_Screen_shots/item.png)
+   
    Description: Screenshot depicting the structure of the Item table, including its columns and data.
 
 6. **Inventory_Item Table:**
@@ -204,17 +214,25 @@ Below are the key files and components included in the project:
    Description: Screenshot presenting the structure of the Inventory_Item table, showcasing its columns and data.
 
 7. **Payment_method Table:**
+    
    ![Payment_method Table](Tables_Screen_shots/payment_method.png)
+   
    Description: Screenshot showing the structure of the Payment_method table, including its columns and data.
 
 8. **Order Table:**
+    
    ![Order Table](Tables_Screen_shots/order.png)
+   
    Description: Screenshot displaying the structure of the Order table, illustrating its columns and data.
 
 9. **Order_Details Table:**
+    
    ![Order_Details Table](Tables_Screen_shots/order_details.png)
+   
    Description: Screenshot representing the structure of the Order_Details table, showcasing its columns and data.
 
 10. **Cart_Item Table:**
+    
     ![Cart_Item Table](Tables_Screen_shots/cart_item.png)
+    
     Description: Screenshot illustrating the structure of the Cart_Item table, including its columns and data.
