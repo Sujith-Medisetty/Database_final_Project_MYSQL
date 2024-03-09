@@ -49,7 +49,6 @@ Below are the key files and components included in the project:
 4. **Vendor Registration:**
     - Vendors cannot register directly. They need to contact the company to register on this e-commerce platform to sell their products.
     - Once registered, they can list and sell their products. This screen looks the same as the Customer Registration page.
-    - ![Vendor_Registration](UI_Screenshots/Vendor_Registration.png)
 
 5. **MySQL Database Tables:**
     - In the MySQL database tables screenshot, we can observe all the tables within the "ecommercedb" schema.
