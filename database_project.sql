@@ -13,11 +13,13 @@ CREATE TABLE VendorAuthentication (
 );
 
 -- Create trigger for VendorAuthentication table
+DELIMITER //
 CREATE TRIGGER encrypt_vendor_password BEFORE INSERT ON VendorAuthentication
 FOR EACH ROW
 BEGIN
     SET NEW.password_hash = AES_ENCRYPT(NEW.password_hash, @encryption_key);
 END;
+DELIMITER;
 
 -- CustomerAuthentication table
 CREATE TABLE CustomerAuthentication (
@@ -26,11 +28,13 @@ CREATE TABLE CustomerAuthentication (
 );
 
 -- Create trigger for CustomerAuthentication table
+DELIMITER //
 CREATE TRIGGER encrypt_customer_password BEFORE INSERT ON CustomerAuthentication
 FOR EACH ROW
 BEGIN
     SET NEW.password_hash = AES_ENCRYPT(NEW.password_hash, @encryption_key);
 END;
+DELIMITER;
 
 -- Vendor table
 CREATE TABLE Vendor (
