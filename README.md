@@ -236,3 +236,111 @@ Below are the key files and components included in the project:
     ![Cart_Item Table](Tables_Screen_shots/cart_item.png)
     
     Description: Screenshot illustrating the structure of the Cart_Item table, including its columns and data.
+
+### Normalization
+### 1NF (First Normal Form):
+**Definition:** 
+- All columns in a table are atomic, meaning they contain indivisible values. 
+- No repeating groups or arrays are allowed.
+
+**Alignment with provided tables:**
+1. **VendorAuthentication and CustomerAuthentication Tables:**
+   - Each column contains atomic values (e.g., vendor_email, password_hash).
+2. **Vendor and Customer Tables:**
+   - Columns like `Mobile` in Vendor and Customer tables are stored as JSON, but each JSON field holds atomic values (e.g., "primary-phone": "1234567890", "sec-phone": "1234567890").
+3. **Item, Inventory_Item, Payment_method, Order, Order_Details, and Cart_Item Tables:**
+   - All columns in these tables hold atomic values.
+
+### 2NF (Second Normal Form):
+**Definition:**
+- Should meet the requirements of 1NF.
+- No partial dependencies, meaning that no non-prime attribute is dependent on only part of the primary key.
+
+**Alignment with provided tables:**
+1. **VendorAuthentication and CustomerAuthentication Tables:**
+   - No partial dependencies exist.
+2. **Vendor and Customer Tables:**
+   - All non-prime attributes are fully functionally dependent on the primary key.
+3. **Item, Inventory_Item, Payment_method, Order, Order_Details, and Cart_Item Tables:**
+   - All non-prime attributes are fully functionally dependent on the primary key.
+
+### 3NF (Third Normal Form):
+**Definition:**
+- Should meet the requirements of 2NF.
+- No transitive dependencies, meaning that no non-prime attribute is dependent on another non-prime attribute.
+
+**Alignment with provided tables:**
+1. **VendorAuthentication and CustomerAuthentication Tables:**
+   - No transitive dependencies exist.
+2. **Vendor and Customer Tables:**
+   - No transitive dependencies exist.
+3. **Item, Inventory_Item, Payment_method, Order, Order_Details, and Cart_Item Tables:**
+   - No transitive dependencies exist.
+
+In summary, all provided tables align with the normalization levels as follows:
+- They all satisfy the requirements of 1NF by ensuring atomicity.
+- They adhere to 2NF by eliminating partial dependencies.
+- They conform to 3NF by removing transitive dependencies.
+
+
+### Relationships
+1. **Vendor - VendorAuthentication:**
+   - One-to-One Relationship.
+   - Reason: Each vendor is uniquely identified by their email, which is the primary key in the VendorAuthentication table. It ensures that each vendor has only one authentication entry.
+
+2. **Customer - CustomerAuthentication:**
+   - One-to-One Relationship.
+   - Reason: Similar to vendors, each customer is uniquely identified by their email, which is the primary key in the CustomerAuthentication table. It ensures that each customer has only one authentication entry.
+
+3. **Vendor - Inventory_Item:**
+   - One-to-Many Relationship.
+   - Reason: Each vendor can have multiple items in their inventory. The vendor_email in the Inventory_Item table serves as a foreign key referencing the primary key in the Vendor table, allowing multiple inventory items to be associated with a single vendor.
+
+4. **Payment_method - Customer:**
+   - Many-to-One Relationship.
+   - Reason: Many payment methods can belong to a single customer. The cust_email in the Payment_method table serves as a foreign key referencing the primary key in the Customer table.
+
+5. **Order - Payment_method:**
+   - One-to-One Relationship.
+   - Reason: Each order is typically associated with one payment method. The payment_method_id in the Order table serves as a foreign key referencing the primary key in the Payment_method table, establishing the relationship.
+
+6. **Order - Customer:**
+   - Many-to-One Relationship.
+   - Reason: Many orders can belong to a single customer. The cust_email in the Order table serves as a foreign key referencing the primary key in the Customer table.
+
+7. **Order_Details - Order:**
+   - Many-to-One Relationship.
+   - Reason: Many order details can belong to a single order. The order_id in the Order_Details table serves as a foreign key referencing the primary key in the Order table.
+
+8. **Order_Details - Item:**
+   - Many-to-One Relationship.
+   - Reason: Many order details can involve a single item. The item_id in the Order_Details table serves as a foreign key referencing the primary key in the Item table.
+
+9. **Cart_Item - Customer:**
+   - Many-to-One Relationship.
+   - Reason: Many cart items can belong to a single customer. The cust_email in the Cart_Item table serves as a foreign key referencing the primary key in the Customer table.
+
+10. **Cart_Item - Item:**
+    - One-to-One Relationship.
+    - Reason: Each cart item is associated with exactly one item. The `item_id` in the `Cart_Item` table serves as a foreign key referencing the primary key in the `Item` table. Each cart item corresponds to only one item.
+
+
+### Challenges Faced:
+
+1. **Deriving Relationships Among Tables:**
+   - **Challenge:** Identifying and establishing the correct relationships between tables based on business requirements.
+   - **Solution:** Analyzed the business logic to determine how different entities interacted with each other and established relationships accordingly. Utilized foreign key constraints to enforce referential integrity.
+   - **Example:** Linked tables such as `Vendor`, `Customer`, `Payment_method`, `Order`, `Order_Details`, and `Cart_Item` through appropriate foreign key constraints based on their relationships.
+
+2. **Optimizing Queries to Minimize Redundant Joins:**
+   - **Challenge:** Writing queries efficiently without redundant joins, especially in complex queries involving multiple tables.
+   - **Solution:** Utilized views to encapsulate frequently used joins, reducing redundancy and simplifying query construction. By creating a view such as `OrderDetailsView`, we eliminate the need to join the same tables multiple times for similar types of queries, enhancing query performance.
+   - **Example:** Instead of repeatedly joining tables `Order`, `Order_Details`, `Item`, `Inventory_Item`, `Customer`, and `Vendor` for various queries like revenue calculations, top vendors or customers analysis, we created the `OrderDetailsView` to consolidate these joins. This view simplifies subsequent queries by providing a pre-joined dataset, reducing query complexity and improving execution speed.
+
+3. **Designing Tables Aligned with Normalization Forms:**
+   - **Challenge:** Ensuring tables are designed to adhere to normalization forms to minimize data redundancy and maintain data integrity.
+   - **Solution:** Designed tables with normalization principles in mind, breaking down data into logical entities and organizing them into separate tables to eliminate redundant data storage. Ensured each table represented a single entity or relationship and avoided data duplication.
+   - **Example:** Ensured tables like `Vendor`, `Customer`, `Item`, `Payment_method`, and `Order` were in at least Third Normal Form (3NF) by organizing data to minimize redundancy and dependency.
+
+4. **Designing UI Screens:**
+   - Designing the UI screens for the mobile app took considerable time and presented some challenges during implementation. Detailed documentation is available in the project's README file for reference.
